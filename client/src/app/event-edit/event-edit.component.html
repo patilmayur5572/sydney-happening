@@ -1,0 +1,116 @@
+<!-- This html is used for edit event page -->
+<div class="container eventFormPosition">
+    <form class="form-horizontal" role="form" #eventData = "ngForm" (ngSubmit)= "updateEvent(event._id,eventData)">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h3 class="alignHeader">Update Event</h3>
+                <hr>
+            </div>
+        </div>
+        <!-- input event name, required -->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-form-label" for="eventName">Event Name</label>
+                    <input type="text" name="eventName" class="form-control" maxlength="20" id="eventName" 
+                        [(ngModel)]="event.EventName" #name="ngModel" ngModel required autofocus>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                    <span *ngIf = "name.invalid && name.touched" class="text-danger align-middle">
+                        <i class="fa fa-close"></i> Event Name is required. 
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- input event venue, required -->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="col-form-label" for="eventVenue">Event Venue</label>
+                    <input type="text" name="eventVenue" class="form-control" maxlength="50" id="eventVenue" 
+                        [(ngModel)]="event.EventVenue" #venue="ngModel" ngModel required>
+                </div>
+            </div>
+            <div class="col-md-3">
+            <div class="form-control-feedback">
+                <span *ngIf = "venue.invalid && venue.touched" class="text-danger align-middle">
+                    <i class="fa fa-close"></i> Event Venue is required. 
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- input event date, required -->
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label" for="eventDate">Event Date</label>
+                <span [owlDateTimeTrigger]="dt1"><input [owlDateTime]="dt1" maxlength="10" name="eventDate" 
+                    [(ngModel)]="event.EventDate" class="form-control" #date="ngModel" ngModel required>
+                </span>              
+                <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>              
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-control-feedback">
+                <span *ngIf = "date.invalid && date.touched" class="text-danger align-middle">
+                    <i class="fa fa-close"></i> Event Date is required. 
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- input event time, required -->
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label" for="eventTime">Event Time</label>
+                <span [owlDateTimeTrigger]="dt2"><input [owlDateTime]="dt2" maxlength="6" name="eventTime" 
+                    [(ngModel)]="event.EventTime" class="form-control" #time="ngModel" ngModel required>
+                </span>              
+                <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>              
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-control-feedback">
+                <span *ngIf = "time.invalid && time.touched" class="text-danger align-middle">
+                    <i class="fa fa-close"></i> Event Time is required. 
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- input available seats, required -->
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="col-form-label" for="availableSeats">Seats</label>
+                <input type="number" name="availableSeats" class="form-control" min="1" 
+                    id="availableSeats" max="1000" 
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+                    maxlength="4" id="availableSeats" [(ngModel)]="event.AvailableSeats" #seats="ngModel" ngModel required>
+                </div>
+            </div>
+        <div class="col-md-3">
+            <div class="form-control-feedback">
+                <span *ngIf = "seats.invalid && seats.touched" class="text-danger align-middle">
+                    <i class="fa fa-close"></i> Available Seats is required. 
+                </span>
+            </div>
+        </div>
+    </div>     
+        <div class="row buttonStyle">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <!-- Used to submit the form and update event-->
+                <button type="submit" class="btn btn-sm btn-warning" [disabled]="eventData.invalid || isBusy">Update Event</button>
+                <button type="submit" routerLink="/dashboard" class="btn btn-sm btn-secondary pull-right">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

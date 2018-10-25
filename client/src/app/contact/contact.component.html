@@ -1,0 +1,45 @@
+<div class="container contact-form">
+    <div class="contact-image">
+        <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact"/>
+    </div>
+    <!-- This form would capture the data to be sent to admins in email -->
+    <!-- isValid() checks all the fields for validity -->
+    <form [formGroup]="sendMessage">
+        <h3>Drop Us a Message</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- input name, required -->
+                <div class="form-group">
+                    <input type="text" name="txtName" class="form-control" placeholder="Your Name *" 
+                        formControlName = "name" value="" maxlength="30"/>  
+                </div>
+                <p *ngIf = "isValid('name')" class="text-danger align-middle">Name is required</p>
+                <!-- input email, required -->
+                <div class="form-group">
+                    <input type="text" name="txtEmail" class="form-control" placeholder="Your Email *" 
+                        formControlName = "email" value="" maxlength="30" required/>
+                </div>
+                <p *ngIf = "isValid('email')" class="text-danger align-middle">Email is required</p>
+                <!-- input phone number, required -->
+                <div class="form-group">
+                    <input type="number" name="txtPhone" class="form-control" placeholder="Your Phone Number *" 
+                        formControlName = "phone" value="" minlength="10" maxlength="10"/> 
+                </div>
+                <p *ngIf = "isValid('phone')" class="text-danger align-middle">Contact number is required</p>
+                <div class="form-group">
+                    <!-- Button used to send the email -->
+                    <input type="submit" (click) = "sendEmail()" name="btnSubmit" [disabled]="sendMessage.invalid || isBusy" 
+                        class="btnContact" value="Send Message" />
+                </div>
+            </div>
+            <!-- input message to send, required -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <textarea name="txtMsg" class="form-control textArealength" placeholder="Your Message *" 
+                        formControlName = "message" maxlength="200"></textarea>                 
+                </div>
+                <p *ngIf = "isValid('message')" class="text-danger align-middle">Message is required</p>
+            </div>
+        </div>
+    </form>
+</div>

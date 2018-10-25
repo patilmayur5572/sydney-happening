@@ -1,0 +1,27 @@
+@media (min-width: 34em) {
+    .conatinerMargin {
+        margin-top:20%;
+        margin-bottom: 7%;
+    }
+}
+
+@media (min-width: 48em) {
+    .conatinerMargin {
+        margin-top:5%;
+        margin-bottom: 7%;
+    }
+}
+
+@media (min-width: 62em) {
+    .conatinerMargin {
+        margin-top:5%;
+        margin-bottom: 7%;
+    }
+}
+
+@media (min-width: 75em) {
+    .conatinerMargin {
+        margin-top:5%;
+        margin-bottom: 7%;
+    }
+}

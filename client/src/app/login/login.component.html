@@ -1,0 +1,54 @@
+
+<!-- This html is used to render the login page -->
+<div class="container login-form" >
+    <form class="form-horizontal" role="form" [formGroup]="loginForm" (ngSubmit)= "validateLogin()">
+        <div class="row">
+            <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h3 class="alignHeader">Welcome to Sydney Happening!!</h3>
+                    <hr>
+                </div>
+            </div>
+            <!-- input for email address, required -->
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <label class="sr-only" for="email">E-Mail Address</label>
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon emailAddOn"><i class="fa fa-at"></i></div>
+                            <input type="text" name="email" class="form-control" formControlName="email"
+                                placeholder="you@example.com" maxlength="30" required>
+                            <span class="text-danger align-middle" *ngIf="isValid('email')">*</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- input for password, required -->
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="sr-only" for="password">Password</label>
+                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <div class="input-group-addon passwordAddOn"><i class="fa fa-key"></i></div>
+                                <input type="password" name="password" class="form-control" formControlName="password"
+                                    placeholder="Password" maxlength="30" required>
+                                <span class="text-danger align-middle" *ngIf="isValid('password')">*</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- submit button -->
+            <div class="row submitBtnAddOn">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-lg btn-block btn-success" 
+                        [disabled]="loginForm.invalid || isBusy"><i class="fa fa-sign-in"></i> Login
+                    </button>
+                    <span class="pull-right"> Don't have an account? <a class="btn btn-link" 
+                        routerLink="/registration">Signup</a></span>
+                </div>
+            </div>
+    </form>
+</div>
